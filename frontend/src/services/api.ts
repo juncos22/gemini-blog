@@ -1,5 +1,5 @@
 import axios from "axios";
-import type { Post, User } from "../types";
+import type { Post, User, Profile } from "../types";
 
 const apiClient = axios.create({
   baseURL: "http://localhost:3000/api",
@@ -38,5 +38,20 @@ export default {
   },
   register(data: Omit<User, "id">) {
     return apiClient.post<User>("/auth/register", data);
+  },
+  getProfiles() {
+    return apiClient.get<Profile[]>("/profiles");
+  },
+  getProfile(id: number) {
+    return apiClient.get<Profile>(`/profiles/${id}`);
+  },
+  createProfile(profile: Omit<Profile, "id">) {
+    return apiClient.post<Profile>("/profiles", profile);
+  },
+  updateProfile(id: number, profile: Partial<Omit<Profile, "id">>) {
+    return apiClient.put<Profile>(`/profiles/${id}`, profile);
+  },
+  deleteProfile(id: number) {
+    return apiClient.delete(`/profiles/${id}`);
   },
 };

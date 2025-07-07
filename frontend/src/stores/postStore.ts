@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import api from "../services/api";
-import type { Post, User } from "../types";
+import type { Post, User, Profile } from "../types";
 
 interface AuthStoreState {
   posts: Post[];
@@ -9,6 +9,8 @@ interface AuthStoreState {
   error: string | null;
   user: User | null;
   token: string | null;
+  profiles: Profile[];
+  profile: Profile | null;
 }
 
 export const usePostStore = defineStore("post", {
@@ -19,6 +21,8 @@ export const usePostStore = defineStore("post", {
     error: null,
     user: null,
     token: localStorage.getItem("token") || null,
+    profiles: [],
+    profile: null,
   }),
   actions: {
     async fetchPosts() {
@@ -118,6 +122,71 @@ export const usePostStore = defineStore("post", {
       this.user = null;
       this.token = null;
       localStorage.removeItem("token");
+    },
+    async fetchProfiles() {
+      this.loading = true;
+      this.error = null;
+      try {
+        const response = await api.getProfiles();
+        this.profiles = response.data;
+      } catch (error) {
+        this.error = "Failed to fetch profiles";
+        console.error(error);
+      } finally {
+        this.loading = false;
+      }
+    },
+    async fetchProfile(id: number) {
+      this.loading = true;
+      this.error = null;
+      try {
+        const response = await api.getProfile(id);
+        this.profile = response.data;
+      } catch (error) {
+        this.error = "Failed to fetch profile";
+        console.error(error);
+      } finally {
+        this.loading = false;
+      }
+    },
+    async createProfile(profileData: Omit<Profile, "id">) {
+      this.loading = true;
+      this.error = null;
+      try {
+        await api.createProfile(profileData);
+        await this.fetchProfiles(); // Refresh the list
+      } catch (error) {
+        this.error = "Failed to create profile";
+        console.error(error);
+      } finally {
+        this.loading = false;
+      }
+    },
+    async updateProfile(id: number, profileData: Profile) {
+      this.loading = true;
+      this.error = null;
+      try {
+        await api.updateProfile(id, profileData);
+        await this.fetchProfiles(); // Refresh the list
+      } catch (error) {
+        this.error = "Failed to update profile";
+        console.error(error);
+      } finally {
+        this.loading = false;
+      }
+    },
+    async deleteProfile(id: number) {
+      this.loading = true;
+      this.error = null;
+      try {
+        await api.deleteProfile(id);
+        await this.fetchProfiles(); // Refresh the list
+      } catch (error) {
+        this.error = "Failed to delete profile";
+        console.error(error);
+      } finally {
+        this.loading = false;
+      }
     },
   },
 });

@@ -3,7 +3,12 @@
     <h1>Edit Post</h1>
     <SpinnerLoader v-if="loading" />
     <Alert v-if="error" :message="error" type="error" />
-    <PostForm v-if="post && !loading" :post="post" @submit="updatePost" buttonText="Update" />
+    <PostForm
+      v-if="post && !loading"
+      :post="post"
+      @submit="updatePost"
+      buttonText="Update"
+    />
   </div>
 </template>
 
@@ -26,7 +31,7 @@ export default defineComponent({
     const store = usePostStore();
     const route = useRoute();
     const router = useRouter();
-    const postId = route.params.id as string;
+    const postId = parseInt(route.params.id as string);
 
     onMounted(() => {
       store.fetchPost(postId);
@@ -37,7 +42,7 @@ export default defineComponent({
     const error = computed(() => store.error);
 
     const updatePost = async (postData: Post) => {
-      await store.updatePost({ ...postData, id: postId });
+      await store.updatePost(postId, postData);
       if (!store.error) {
         router.push({ name: "PostDetail", params: { id: postId } });
       }

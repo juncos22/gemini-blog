@@ -5,6 +5,10 @@ import CreatePost from "@/views/CreatePost.vue";
 import EditPost from "@/views/EditPost.vue";
 import Login from "@/views/Login.vue";
 import Register from "@/views/Register.vue";
+import ProfileList from "@/views/ProfileList.vue";
+import ProfileDetail from "@/views/ProfileDetail.vue";
+import CreateProfile from "@/views/CreateProfile.vue";
+import EditProfile from "@/views/EditProfile.vue";
 
 const routes = [
   {
@@ -38,6 +42,28 @@ const routes = [
     path: "/register",
     name: "Register",
     component: Register,
+  },
+  {
+    path: "/profiles",
+    name: "ProfileList",
+    component: ProfileList,
+  },
+  {
+    path: "/profiles/:id",
+    name: "ProfileDetail",
+    component: ProfileDetail,
+    props: true,
+  },
+  {
+    path: "/profiles/create",
+    name: "CreateProfile",
+    component: CreateProfile,
+  },
+  {
+    path: "/profiles/:id/edit",
+    name: "EditProfile",
+    component: EditProfile,
+    props: true,
   },
 ];
 

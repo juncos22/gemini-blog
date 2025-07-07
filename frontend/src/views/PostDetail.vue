@@ -11,7 +11,11 @@
         {{ new Date(post.createdAt).toLocaleDateString() }}
       </p>
       <div class="post-actions">
-        <router-link :to="{ name: 'EditPost', params: { id: post.id } }" class="button-link">Edit Post</router-link>
+        <router-link
+          :to="{ name: 'EditPost', params: { id: post.id } }"
+          class="button-link"
+          >Edit Post</router-link
+        >
         <button @click="deletePost" class="button-delete">Delete Post</button>
       </div>
       <router-link to="/" class="button-link">Back to list</router-link>
@@ -20,9 +24,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, computed } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
-import { usePostStore } from '@/stores/postStore';
+import { defineComponent, onMounted, computed } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import { usePostStore } from "@/stores/postStore";
 import SpinnerLoader from "@/components/SpinnerLoader.vue";
 import Alert from "@/components/Alert.vue";
 
@@ -35,7 +39,7 @@ export default defineComponent({
     const store = usePostStore();
     const route = useRoute();
     const router = useRouter();
-    const postId = route.params.id as string;
+    const postId = parseInt(route.params.id as string);
 
     onMounted(() => {
       store.fetchPost(postId);
@@ -46,10 +50,10 @@ export default defineComponent({
     const error = computed(() => store.error);
 
     const deletePost = async () => {
-      if (confirm('Are you sure you want to delete this post?')) {
+      if (confirm("Are you sure you want to delete this post?")) {
         await store.deletePost(postId);
         if (!store.error) {
-          router.push('/');
+          router.push("/");
         }
       }
     };
