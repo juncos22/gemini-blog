@@ -1,7 +1,7 @@
 <template>
   <nav>
     <div class="nav-container">
-      <router-link to="/" class="nav-logo"> Blog del Informático </router-link>
+      <router-link to="/" class="nav-logo">🧑‍💻 Gemini Blog 🧑‍💻 </router-link>
       <ul class="nav-links">
         <li><RouterLink to="/">Inicio</RouterLink></li>
         <li><RouterLink to="/login">Iniciar Sesión</RouterLink></li>
