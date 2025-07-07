@@ -34,7 +34,7 @@ nav .nav-container {
   justify-content: space-between;
   align-items: center;
 }
-nav a.logo {
+nav .nav-logo {
   color: #fff;
   font-size: 1.25rem;
   font-weight: 600;
@@ -45,13 +45,13 @@ nav ul {
   display: flex;
   gap: 1.25rem;
 }
-nav a {
+nav .nav-links a {
   color: #cbd5e1;
   text-decoration: none;
   transition: color 0.25s;
 }
-nav a:hover,
-nav a[aria-current="page"] {
+nav .nav-links a:hover,
+nav .nav-links a[aria-current="page"] {
   color: #fff;
 }
 </style>
