@@ -7,7 +7,7 @@
         <li><RouterLink to="/login">Iniciar Sesión</RouterLink></li>
         <li><RouterLink to="/register">Registrarme</RouterLink></li>
         <li>
-          <RouterLink aria-current="page" to="/profile">Perfil</RouterLink>
+          <RouterLink aria-current="page" to="/profiles">Perfil</RouterLink>
         </li>
       </ul>
     </div>

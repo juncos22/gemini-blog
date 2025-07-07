@@ -12,17 +12,28 @@
   </form>
 </template>
 
-<script setup>
-import { ref } from "vue";
+<script lang="ts">
+import { defineComponent, ref } from "vue";
 import { usePostStore } from "../stores/postStore";
 
-const email = ref("");
-const password = ref("");
-const store = usePostStore();
+export default defineComponent({
+  name: "LoginForm",
+  setup() {
+    const email = ref("");
+    const password = ref("");
+    const store = usePostStore();
 
-const handleSubmit = async () => {
-  await store.login(email.value, password.value);
-};
+    const handleSubmit = async () => {
+      await store.login(email.value, password.value);
+    };
+
+    return {
+      email,
+      password,
+      handleSubmit,
+    };
+  },
+});
 </script>
 
 <style>

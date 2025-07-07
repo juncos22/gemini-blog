@@ -1,13 +1,13 @@
-import express from 'express';
-import cors from 'cors';
-import dotenv from 'dotenv';
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
 
 dotenv.config();
-import postRoutes from './routes/posts';
-import authRoutes from './routes/auth';
-import profileRoutes from './routes/profile';
-import swaggerUi from 'swagger-ui-express';
-import swaggerSpec from './swagger';
+import postRoutes from "./routes/posts";
+import authRoutes from "./routes/auth";
+import profileRoutes from "./routes/profile";
+import swaggerUi from "swagger-ui-express";
+import swaggerSpec from "./swagger";
 
 const app = express();
 const port = 3000;
@@ -15,7 +15,7 @@ const port = 3000;
 app.use(
   cors({
     origin: "http://localhost:5173",
-    allowedHeaders: ["Content-Type"],
+    allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
   })

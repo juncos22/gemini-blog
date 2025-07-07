@@ -25,14 +25,21 @@
       "content": "Descripcion de prueba",
       "image": "",
       "createdAt": "2025-07-04T21:06:03.761Z"
+    },
+    {
+      "id": 6,
+      "title": "Nuevo post de prueba",
+      "content": "Contenido de prueba asdasdadsadasdasdasdasdsadasdasdadsadsadsadasdsadasdaasdadadadsadasdasdasddasdadasd.",
+      "authorId": 1,
+      "createdAt": "2025-07-07T19:17:37.650Z"
     }
   ],
   "users": [
     {
       "id": 1,
-      "name": "Nicolas",
-      "email": "nicolas@test.com",
-      "password": "$2b$10$J.x6gV.m4a.p4gV.m4a.p4gV.m4a.p4gV.m4a.p4gV.m4a.p4"
+      "name": "nicolas.juncos",
+      "email": "nicolas.juncos@gmail.com",
+      "password": "$2b$10$y2lt6f8e917yd6vcIjEO0uvck0hrTe29yw7z94sAj24.JtT/fLhta"
     }
   ],
   "profiles": []

@@ -46,4 +46,12 @@ label {
   margin-bottom: 0.5rem;
   font-weight: bold;
 }
+textarea {
+  width: 100%;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius);
+  margin-bottom: 1rem;
+  transition: border-color 0.25s;
+}
 </style>
