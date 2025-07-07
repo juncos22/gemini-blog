@@ -1,11 +1,26 @@
 <template>
   <div id="app">
-    <router-view />
+    <NavMenu />
+    <main class="main-content">
+      <router-view />
+    </main>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'App'
-};
+import NavMenu from "@/components/NavMenu.vue";
+import { defineComponent } from "vue";
+
+export default defineComponent({
+  name: "App",
+  components: {
+    NavMenu,
+  },
+});
 </script>
+
+<style>
+.main-content {
+  padding: 2rem;
+}
+</style>

@@ -1,7 +1,8 @@
+import express from 'express';
+import * as postController from '../controllers/postController'
+import authMiddleware from '../middleware/authMiddleware';
 
-const express = require('express');
 const router = express.Router();
-const postController = require('../controllers/postController');
 
 /**
  * @swagger
@@ -90,7 +91,7 @@ router.get('/:id', postController.getPostById);
  *       500:
  *         description: Some server error
  */
-router.post('/', postController.createPost);
+router.post('/', authMiddleware, postController.createPost);
 
 /**
  * @swagger
@@ -122,7 +123,7 @@ router.post('/', postController.createPost);
  *       500:
  *         description: Some error happened
  */
-router.put('/:id', postController.updatePost);
+router.put('/:id', authMiddleware, postController.updatePost);
 
 /**
  * @swagger
@@ -142,6 +143,6 @@ router.put('/:id', postController.updatePost);
  *       404:
  *         description: The post was not found
  */
-router.delete('/:id', postController.deletePost);
+router.delete('/:id', authMiddleware, postController.deletePost);
 
-module.exports = router;
+export default router;
