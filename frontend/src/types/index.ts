@@ -6,3 +6,10 @@ export interface Post {
   createdAt: string;
   image: string;
 }
+
+export interface User {
+  id: number;
+  name: string;
+  email: string;
+  password?: string;
+}

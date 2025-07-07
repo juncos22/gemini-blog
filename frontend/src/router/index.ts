@@ -3,6 +3,8 @@ import PostList from "@/views/PostList.vue";
 import PostDetail from "@/views/PostDetail.vue";
 import CreatePost from "@/views/CreatePost.vue";
 import EditPost from "@/views/EditPost.vue";
+import Login from "@/views/Login.vue";
+import Register from "@/views/Register.vue";
 
 const routes = [
   {
@@ -26,6 +28,16 @@ const routes = [
     name: "EditPost",
     component: EditPost,
     props: true,
+  },
+  {
+    path: "/login",
+    name: "Login",
+    component: Login,
+  },
+  {
+    path: "/register",
+    name: "Register",
+    component: Register,
   },
 ];
 

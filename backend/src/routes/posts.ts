@@ -75,6 +75,8 @@ router.get('/:id', postController.getPostById);
  * /api/posts:
  *   post:
  *     summary: Create a new post
+ *     security:
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -90,6 +92,8 @@ router.get('/:id', postController.getPostById);
  *               $ref: '#/components/schemas/Post'
  *       500:
  *         description: Some server error
+ *       401:
+ *         description: Unauthorized
  */
 router.post('/', authMiddleware, postController.createPost);
 
@@ -98,6 +102,8 @@ router.post('/', authMiddleware, postController.createPost);
  * /api/posts/{id}:
  *   put:
  *     summary: Update the post by the id
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -122,6 +128,8 @@ router.post('/', authMiddleware, postController.createPost);
  *         description: The post was not found
  *       500:
  *         description: Some error happened
+ *       401:
+ *         description: Unauthorized
  */
 router.put('/:id', authMiddleware, postController.updatePost);
 

@@ -1,20 +1,24 @@
 import { defineStore } from "pinia";
 import api from "../services/api";
-import type { Post } from "../types";
+import type { Post, User } from "../types";
 
-interface PostStoreState {
+interface AuthStoreState {
   posts: Post[];
   post: Post | null;
   loading: boolean;
   error: string | null;
+  user: User | null;
+  token: string | null;
 }
 
 export const usePostStore = defineStore("post", {
-  state: (): PostStoreState => ({
+  state: (): AuthStoreState => ({
     posts: [],
     post: null,
     loading: false,
     error: null,
+    user: null,
+    token: localStorage.getItem("token") || null,
   }),
   actions: {
     async fetchPosts() {
@@ -81,6 +85,39 @@ export const usePostStore = defineStore("post", {
       } finally {
         this.loading = false;
       }
+    },
+    async login(email: string, password: string) {
+      this.loading = true;
+      this.error = null;
+      try {
+        const response = await api.login({ email, password });
+        this.token = response.data.token;
+        localStorage.setItem("token", response.data.token);
+        // You might want to fetch user data here and set it to the state
+      } catch (error) {
+        this.error = "Failed to login";
+        console.error(error);
+      } finally {
+        this.loading = false;
+      }
+    },
+    async register(name: string, email: string, password: string) {
+      this.loading = true;
+      this.error = null;
+      try {
+        await api.register({ name, email, password });
+        // You might want to automatically login the user after registration
+      } catch (error) {
+        this.error = "Failed to register";
+        console.error(error);
+      } finally {
+        this.loading = false;
+      }
+    },
+    logout() {
+      this.user = null;
+      this.token = null;
+      localStorage.removeItem("token");
     },
   },
 });
