@@ -11,7 +11,8 @@ export interface User {
   id: number;
   name: string;
   email: string;
-  password?: string; // Make password optional for security reasons
+  password?: string;
+  googleId?: string;
 }
 
 export interface Profile {

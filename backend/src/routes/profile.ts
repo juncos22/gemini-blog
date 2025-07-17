@@ -1,7 +1,6 @@
-
-import { Router } from 'express';
-import * as profileController from '../controllers/profileController';
-import authMiddleware from '../middleware/authMiddleware';
+import { Router } from "express";
+import * as profileController from "../controllers/profileController";
+import authMiddleware from "../middleware/authMiddleware";
 
 const router = Router();
 
@@ -20,7 +19,7 @@ const router = Router();
  *               items:
  *                 $ref: '#/components/schemas/Profile'
  */
-router.get('/', profileController.getAllProfiles);
+router.get("/", profileController.getAllProfiles);
 
 /**
  * @swagger
@@ -44,7 +43,7 @@ router.get('/', profileController.getAllProfiles);
  *       404:
  *         description: The profile was not found
  */
-router.get('/:id', profileController.getProfileById);
+router.get("/:id", profileController.getProfileById);
 
 /**
  * @swagger
@@ -71,7 +70,7 @@ router.get('/:id', profileController.getProfileById);
  *       401:
  *         description: Unauthorized
  */
-router.post('/', authMiddleware, profileController.createProfile);
+router.post("/", authMiddleware, profileController.createProfile);
 
 /**
  * @swagger
@@ -107,7 +106,7 @@ router.post('/', authMiddleware, profileController.createProfile);
  *       401:
  *         description: Unauthorized
  */
-router.put('/:id', authMiddleware, profileController.updateProfile);
+router.put("/:id", authMiddleware, profileController.updateProfile);
 
 /**
  * @swagger
@@ -131,6 +130,6 @@ router.put('/:id', authMiddleware, profileController.updateProfile);
  *       401:
  *         description: Unauthorized
  */
-router.delete('/:id', authMiddleware, profileController.deleteProfile);
+router.delete("/:id", authMiddleware, profileController.deleteProfile);
 
 export default router;

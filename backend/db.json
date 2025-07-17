@@ -14,32 +14,46 @@
     },
     {
       "id": 4,
-      "title": "Nuevo post",
-      "content": "Creacion de estilos CSS con Gemini AI Pro",
-      "authorId": 1
+      "title": "New Post 2",
+      "content": "This is the content of the new post.",
+      "authorId": 2,
+      "createdAt": "2025-07-17T04:53:52.257Z"
     },
     {
       "id": 5,
-      "title": "Post 1",
-      "authorId": 1,
-      "content": "Descripcion de prueba",
-      "image": "",
-      "createdAt": "2025-07-04T21:06:03.761Z"
+      "title": "New Post 3",
+      "content": "This is the content of the new post.",
+      "authorId": 2,
+      "createdAt": "2025-07-17T04:56:16.962Z"
     },
     {
       "id": 6,
-      "title": "Nuevo post de prueba",
-      "content": "Contenido de prueba asdasdadsadasdasdasdasdsadasdasdadsadsadsadasdsadasdaasdadadadsadasdasdasddasdadasd.",
-      "authorId": 1,
-      "createdAt": "2025-07-07T19:17:37.650Z"
+      "title": "New Post 4",
+      "content": "This is the content of the new post.",
+      "authorId": 2,
+      "createdAt": "2025-07-17T04:57:31.518Z"
+    },
+    {
+      "id": 7,
+      "title": "New Post 4",
+      "content": "This is the content of the new post.",
+      "authorId": 2,
+      "createdAt": "2025-07-17T05:01:57.665Z"
     }
   ],
   "users": [
     {
       "id": 1,
-      "name": "nicolas.juncos",
+      "name": "Nicolas Juncos",
+      "email": "juncosnicolas36@gmail.com",
+      "googleId": "111923476405523992672",
+      "password": ""
+    },
+    {
+      "id": 2,
+      "name": "Nicolas Juncos",
       "email": "nicolas.juncos@gmail.com",
-      "password": "$2b$10$y2lt6f8e917yd6vcIjEO0uvck0hrTe29yw7z94sAj24.JtT/fLhta"
+      "password": "$2b$10$TC1.FejC8A4EUShFGsxloOcVePMBXuIIrGBtN/YrB9T9PxIopi61K"
     }
   ],
   "profiles": []

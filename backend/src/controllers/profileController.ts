@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import ProfileModel from "../models/profile";
 import { AuthRequest } from "../middleware/authMiddleware";
+import { User } from "../models/types";
 
 export const getAllProfiles = (req: Request, res: Response) => {
   const profiles = ProfileModel.findAll();
@@ -16,9 +17,9 @@ export const getProfileById = (req: Request, res: Response) => {
   }
 };
 
-export const createProfile = (req: AuthRequest, res: Response) => {
+export const createProfile = (req: Request<AuthRequest>, res: Response) => {
   const { bio } = req.body;
-  const userId = req.user?.id; // Assuming the profile is for the authenticated user
+  const userId = (req.user as User).id; // Assuming the profile is for the authenticated user
   if (!userId) {
     res.status(401).json({ message: "Unauthorized" });
     return;
@@ -27,8 +28,11 @@ export const createProfile = (req: AuthRequest, res: Response) => {
   res.status(201).json(newProfile);
 };
 
-export const updateProfile = (req: AuthRequest, res: Response) => {
-  const updatedProfile = ProfileModel.update(parseInt(req.params.id), req.body);
+export const updateProfile = (req: Request<AuthRequest>, res: Response) => {
+  const updatedProfile = ProfileModel.update(
+    parseInt(req.params.id!),
+    req.body
+  );
   if (updatedProfile) {
     res.json(updatedProfile);
   } else {
@@ -36,8 +40,8 @@ export const updateProfile = (req: AuthRequest, res: Response) => {
   }
 };
 
-export const deleteProfile = (req: AuthRequest, res: Response) => {
-  const deleted = ProfileModel.delete(parseInt(req.params.id));
+export const deleteProfile = (req: Request<AuthRequest>, res: Response) => {
+  const deleted = ProfileModel.delete(parseInt(req.params.id!));
   if (deleted) {
     res.status(204).send(); // No Content
   } else {

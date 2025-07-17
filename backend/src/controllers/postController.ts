@@ -1,14 +1,15 @@
-import { Response } from "express";
+import { Request, Response } from "express";
 import PostModel from "../models/post";
 import { AuthRequest } from "../middleware/authMiddleware";
+import { User } from "../models/types";
 
-export const getAllPosts = (req: AuthRequest, res: Response) => {
+export const getAllPosts = (req: Request<AuthRequest>, res: Response) => {
   const posts = PostModel.findAll();
   res.json(posts);
 };
 
-export const getPostById = (req: AuthRequest, res: Response) => {
-  const post = PostModel.findById(parseInt(req.params.id));
+export const getPostById = (req: Request<AuthRequest>, res: Response) => {
+  const post = PostModel.findById(parseInt(req.params.id!));
   if (post) {
     res.json(post);
   } else {
@@ -16,9 +17,9 @@ export const getPostById = (req: AuthRequest, res: Response) => {
   }
 };
 
-export const createPost = (req: AuthRequest, res: Response) => {
+export const createPost = (req: Request<AuthRequest>, res: Response) => {
   const { title, content } = req.body;
-  const authorId = req.user?.id;
+  const authorId = (req.user as User).id;
   if (!authorId) {
     res.status(401).json({ message: "Unauthorized" });
     return;
@@ -27,8 +28,8 @@ export const createPost = (req: AuthRequest, res: Response) => {
   res.status(201).json(newPost);
 };
 
-export const updatePost = (req: AuthRequest, res: Response) => {
-  const updatedPost = PostModel.update(parseInt(req.params.id), req.body);
+export const updatePost = (req: Request<AuthRequest>, res: Response) => {
+  const updatedPost = PostModel.update(parseInt(req.params.id!), req.body);
   if (updatedPost) {
     res.json(updatedPost);
   } else {
@@ -36,8 +37,8 @@ export const updatePost = (req: AuthRequest, res: Response) => {
   }
 };
 
-export const deletePost = (req: AuthRequest, res: Response) => {
-  const deleted = PostModel.delete(parseInt(req.params.id));
+export const deletePost = (req: Request<AuthRequest>, res: Response) => {
+  const deleted = PostModel.delete(parseInt(req.params.id!));
   if (deleted) {
     res.status(204).send(); // No Content
   } else {

@@ -25,6 +25,7 @@ const UserModel = {
     const newUser: User = {
       id: db.users.length > 0 ? Math.max(...db.users.map((u) => u.id)) + 1 : 1,
       ...userData,
+      password: userData.password || "",
     } as User;
     db.users.push(newUser);
     writeDB(db);

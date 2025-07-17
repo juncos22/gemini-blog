@@ -1,6 +1,6 @@
-import express from 'express';
-import * as postController from '../controllers/postController'
-import authMiddleware from '../middleware/authMiddleware';
+import express from "express";
+import * as postController from "../controllers/postController";
+import authMiddleware from "../middleware/authMiddleware";
 
 const router = express.Router();
 
@@ -44,7 +44,7 @@ const router = express.Router();
  *               items:
  *                 $ref: '#/components/schemas/Post'
  */
-router.get('/', postController.getAllPosts);
+router.get("/", postController.getAllPosts);
 
 /**
  * @swagger
@@ -68,7 +68,7 @@ router.get('/', postController.getAllPosts);
  *       404:
  *         description: The post was not found
  */
-router.get('/:id', postController.getPostById);
+router.get("/:id", postController.getPostById);
 
 /**
  * @swagger
@@ -95,7 +95,7 @@ router.get('/:id', postController.getPostById);
  *       401:
  *         description: Unauthorized
  */
-router.post('/', authMiddleware, postController.createPost);
+router.post("/", authMiddleware, postController.createPost);
 
 /**
  * @swagger
@@ -131,7 +131,7 @@ router.post('/', authMiddleware, postController.createPost);
  *       401:
  *         description: Unauthorized
  */
-router.put('/:id', authMiddleware, postController.updatePost);
+router.put("/:id", authMiddleware, postController.updatePost);
 
 /**
  * @swagger
@@ -151,6 +151,6 @@ router.put('/:id', authMiddleware, postController.updatePost);
  *       404:
  *         description: The post was not found
  */
-router.delete('/:id', authMiddleware, postController.deletePost);
+router.delete("/:id", authMiddleware, postController.deletePost);
 
 export default router;
